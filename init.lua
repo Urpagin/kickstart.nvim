@@ -162,6 +162,11 @@ vim.opt.scrolloff = 10
 
 -- CUMSTOM KEYMEPSAA
 
+-- Disable F1 key
+vim.keymap.set('', '<F1>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('i', '<F1>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('v', '<F1>', '<Nop>', { noremap = true, silent = true })
+
 local bufopts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
 
@@ -927,7 +932,7 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.lint',
+  --require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
