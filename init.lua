@@ -95,7 +95,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -170,7 +170,28 @@ vim.keymap.set('', '<F1>', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('i', '<F1>', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('v', '<F1>', '<Nop>', { noremap = true, silent = true })
 
+-- Journal features BEGIN
+local function file_exists(name)
+  local f = io.open(name, 'r')
+  if f ~= nil then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end
+
+local journal_lua_file_path = '/home/urpagin/sk/journal/journal_features.lua'
+
+if file_exists(journal_lua_file_path) then
+  -- Import custom features from external .lua file.
+  dofile(journal_lua_file_path)
+end
+
+-- Journal features END
+
 local bufopts = { noremap = true, silent = true }
+
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -866,7 +887,9 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      --vim.cmd.colorscheme 'tokyonight-night'
+      --vim.cmd.colorscheme 'quiet'
+      vim.cmd.colorscheme 'torte'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
